@@ -1,10 +1,10 @@
 import random
 
 words = ["keyboard", "python", "owen", "blue", "tyrannosaurus"]
-# count = 0
 random_word = random.choice(words)
+blanks = []
 
-def rand_word(rand_word):
+def rand_word(self): # Funcion to count the number of letters in random word
     count = 0
 
     for i in random_word:
@@ -13,8 +13,21 @@ def rand_word(rand_word):
     return count
     
 
+def word_blanks(self): # Function to print out blanks for the random word.
+    
+    for i in random_word:
+        blanks.append("_")
+    
+    word_blanks = " ".join(blanks)
 
-# print("Random word test: " + random_word)
+    print(word_blanks)
+
+    return word_blanks
+
+
 rand_word(rand_word)
-# print(count)
+word_blanks(word_blanks)
+
+
+
 print(random_word)
