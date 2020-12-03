@@ -28,21 +28,31 @@ def word_blanks(self): # Function to print out blanks for the random word.
 def validate_input(letter): # Check to see if the user input is a letter
     while True:
         if letter.isalpha():
-            return True
+            break
         else:
-            input("Please enter a letter: ")
-            return False
+            letter = input("Please enter a letter: ")
+            
 
 def letter_in_word(letter, random_word): # Function to check is Users letter is in word
     word = []
-    
+    guess_count = 0
+
     for l in random_word:
         word.append(l)
     
-    if letter in random_word:
-        print("You guessed right")
-    else:
-        print("Guess again")
+    while guess_count <= 10:
+        if letter in word:
+            guess_count += 1
+            print("There is a/an " + letter)
+            print(guess_count)
+            letter = input("Guess another letter: ")
+        else:
+            guess_count += 1
+            letter = input("Guess again: ")
+            print(guess_count)
+    
+    if guess_count >= 10:
+        print("Sorry you lose please play again the word was " + random_word)
 
 
 rand_word(rand_word)
