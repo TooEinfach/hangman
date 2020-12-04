@@ -48,16 +48,15 @@ def letter_in_word(letter, random_word, guess_count): # Function to check is Use
         word.append(l)
     
     while guess_count <= 15:
-        letter = validate_input(letter)
-        print(letter)
+        letter = validate_input(letter) # had to do this so that when number put in the vaildate letter when returned set for the rest of the function.
+        
         if letter in word:
             print("There is a/an " + letter)
-            # print(guess_count)
-            letter = input("Guess another letter: ") 
+            return letter
             
         else:
             print("There is no " + letter)
-            letter = input("Guess again: ") 
+            return             
 
             # print(guess_count)
         guess_count += 1
