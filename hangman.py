@@ -3,7 +3,15 @@ import random
 words = ["keyboard", "python", "owen", "blue", "tyrannosaurus"]
 random_word = random.choice(words)
 blanks = []
-letter = input("Guess a letter: ")
+guess_count = 1
+
+print("Welcome to Hangman")
+
+def menu():
+    print("-" * 30 + "Menu" + "-"* 30)
+    print("1 - Guess letter ")
+    print("2 - Guess Word")
+    print("3 - Quit")
 
 def rand_word(self): # Funcion to count the number of letters in random word
     count = 0
@@ -33,32 +41,46 @@ def validate_input(letter): # Check to see if the user input is a letter
             letter = input("Please enter a letter: ")
             
 
-def letter_in_word(letter, random_word): # Function to check is Users letter is in word
+def letter_in_word(letter, random_word, guess_count): # Function to check is Users letter is in word
     word = []
-    guess_count = 0
 
     for l in random_word:
         word.append(l)
     
-    while guess_count <= 10:
+    while guess_count <= 15:
         if letter in word:
-            guess_count += 1
             print("There is a/an " + letter)
             print(guess_count)
             letter = input("Guess another letter: ")
         else:
-            guess_count += 1
             letter = input("Guess again: ")
             print(guess_count)
+        guess_count += 1
     
-    if guess_count >= 10:
+    if guess_count >= 15:
         print("Sorry you lose please play again the word was " + random_word)
 
+def main():
+    while True:
+        menu()
+        choice = input("? ")
 
-rand_word(rand_word)
-word_blanks(word_blanks)
-validate_input(letter)
-letter_in_word(letter, random_word)
+        if choice.isdigit():
+            if 1 == choice <= 3:
+                print("You picked " + choice)
+                break
+            else:
+                choice = input("Please enter a number between 1 and 3: ")
+        else:
+            choice = input("Please enter a number between 1 and 3: ")
+
+if __name__ == "__main__":
+    main()
+# menu()
+# rand_word(rand_word)
+# word_blanks(word_blanks)
+# validate_input(letter)
+# letter_in_word(letter, random_word, guess_count)
 
 
 
