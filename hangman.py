@@ -22,14 +22,12 @@ def rand_word(self): # Funcion to count the number of letters in random word
     return count
     
 
-def word_blanks(self): # Function to print out blanks for the random word.
+def word_blanks(rand_word): # Function to print out blanks for the random word.
     
     for i in random_word:
         blanks.append("_")
     
     word_blanks = " ".join(blanks)
-
-    print(word_blanks)
 
     return word_blanks
 
@@ -63,7 +61,8 @@ def letter_in_word(letter, random_word, guess_count): # Function to check is Use
 def main():
     while True:
         menu()
-        choice = input("? ")
+        print("Your word is " + word_blanks(random_word))
+        choice = input("Select Your option:  ")
 
         if choice.isdigit():
             if 1 == choice <= 3:
