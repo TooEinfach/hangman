@@ -34,26 +34,32 @@ def word_blanks(rand_word): # Function to print out blanks for the random word.
 def validate_input(letter): # Check to see if the user input is a letter
     while True:
         if letter.isalpha():
-            break
+            return letter
         else:
             letter = input("Please enter a letter: ")
+            return letter
             
 
 def letter_in_word(letter, random_word, guess_count): # Function to check is Users letter is in word
     word = []
-    validate_input(letter)
+    print(letter)
 
     for l in random_word:
         word.append(l)
     
     while guess_count <= 15:
+        letter = validate_input(letter)
+        print(letter)
         if letter in word:
             print("There is a/an " + letter)
-            print(guess_count)
-            letter = input("Guess another letter: ")
+            # print(guess_count)
+            letter = input("Guess another letter: ") 
+            
         else:
-            letter = input("Guess again: ")
-            print(guess_count)
+            print("There is no " + letter)
+            letter = input("Guess again: ") 
+
+            # print(guess_count)
         guess_count += 1
     
     if guess_count >= 15:
@@ -65,7 +71,6 @@ def main():
         print("Your word is " + word_blanks(random_word))
         choice = int(input("Select Your option:  "))
 
-        # if choice.isdigit():
         if 1 == choice <= 3:
             if choice == 1:
                 letter = input("Please guess a letter: ")
@@ -77,8 +82,6 @@ def main():
                 break
         else:
             choice = input("Please enter a number between 1 and 3: ")
-        # else:
-        #     choice = input("Please enter a number between 1 and 3: ")
 
 if __name__ == "__main__":
     main()
