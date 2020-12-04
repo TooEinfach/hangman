@@ -41,6 +41,7 @@ def validate_input(letter): # Check to see if the user input is a letter
 
 def letter_in_word(letter, random_word, guess_count): # Function to check is Users letter is in word
     word = []
+    validate_input(letter)
 
     for l in random_word:
         word.append(l)
@@ -62,16 +63,22 @@ def main():
     while True:
         menu()
         print("Your word is " + word_blanks(random_word))
-        choice = input("Select Your option:  ")
+        choice = int(input("Select Your option:  "))
 
-        if choice.isdigit():
-            if 1 == choice <= 3:
-                print("You picked " + choice)
+        # if choice.isdigit():
+        if 1 == choice <= 3:
+            if choice == 1:
+                letter = input("Please guess a letter: ")
+                letter_in_word(letter, random_word, guess_count)
+            elif choice == 2:
+                pass
+            elif choice == 3:
+                print("Please come back and play again")
                 break
-            else:
-                choice = input("Please enter a number between 1 and 3: ")
         else:
             choice = input("Please enter a number between 1 and 3: ")
+        # else:
+        #     choice = input("Please enter a number between 1 and 3: ")
 
 if __name__ == "__main__":
     main()
