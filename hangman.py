@@ -3,6 +3,7 @@ import random
 words = ["keyboard", "python", "owen", "blue", "tyrannosaurus"]
 random_word = ""
 blanks = []
+word = []
 guess_count = 1
 
 print("Welcome to Hangman")
@@ -56,19 +57,23 @@ def guess_word(random_word, guess_count, round_word):
         # return guess_count
         playgame(random_word, round_word, guess_count)
 
-def letter_in_word(letter, random_word, guess_count,round_word): # Function to check is Users letter is in word
-    word = []
-    print(letter)
+def word_by_letters(rand_word, word):
 
     for l in random_word:
         word.append(l)
+    return word
     
-    # while guess_count <= 15:
-    #     letter = validate_input(letter) # had to do this so that when number put in the vaildate letter when returned set for the rest of the function.
+
+    
         
     if letter in word:
         print("There is a/an " + letter)
-        return letter
+        index = word.index(letter)
+        print(index) # For Testing
+        blanks[index] = letter
+        print(blanks)
+        round_word = " ".join(blanks)
+        print(round_word) # For testing
         playgame(rand_word, round_word, guess_count)
         
     else:
@@ -76,7 +81,7 @@ def letter_in_word(letter, random_word, guess_count,round_word): # Function to c
         playgame(rand_word, round_word, guess_count)           
 
             # print(guess_count)
-    guess_count += 1
+    # guess_count += 1
     
     
 
@@ -98,7 +103,7 @@ def playgame(rand_word, round_word, guess_count):
         if 1 <= choice <= 3:
             if choice == 1:
                 letter = input("Please guess a letter: ")
-                letter_in_word(letter, random_word, guess_count, round_word)
+                letter_in_word(letter, random_word, guess_count, round_word, word)
             elif choice == 2:
                 guess_word(random_word, guess_count, round_word)
             elif choice == 3:
@@ -110,9 +115,10 @@ def playgame(rand_word, round_word, guess_count):
     return guess_count
 
 def main():
-    global random_word, blanks, guess_count
+    global random_word, blanks, guess_count, word
     random_word = random.choice(words)
     round_word = word_blanks(random_word)
+    word_by_letters(random_word, word)
     while True:
         playgame(random_word, round_word, guess_count)
 
@@ -122,6 +128,7 @@ def main():
         play_again = input("Would you like to play again Y/N: ").lower()
         if play_again == "y":
             blanks = []
+            word = []
             random_word = random.choice(words)
             main()
             # playgame(random_word)
