@@ -63,21 +63,20 @@ def word_by_letters(rand_word, word):
         word.append(l)
     return word
     
+def fill_in_the_blank(letter, blanks, word):
+    indices = [i for i, x in enumerate(word) if x == letter]
+    
+    for i in indices:
+        blanks[i] = letter
+    return blanks
+    print(blanks)
 
 def letter_in_word(letter, random_word, guess_count,round_word, word): # Function to check is Users letter is in word
     print(letter) # For Testing
-    # word_by_letters(random_word, word)
-
-    
-    
-    # while guess_count <= 15:
-    #     letter = validate_input(letter) # had to do this so that when number put in the vaildate letter when returned set for the rest of the function.
-        
+          
     if letter in word:
         print("There is a/an " + letter)
-        index = word.index(letter)
-        print(index) # For Testing
-        blanks[index] = letter
+        fill_in_the_blank(letter,blanks, word)
         print(blanks)
         round_word = " ".join(blanks)
         print(round_word) # For testing
@@ -87,10 +86,7 @@ def letter_in_word(letter, random_word, guess_count,round_word, word): # Functio
         print("There is no " + letter)
         playgame(rand_word, round_word, guess_count)           
 
-            # print(guess_count)
-    # guess_count += 1
-    
-    
+              
 
 def playgame(rand_word, round_word, guess_count):
     guess_count += 1
