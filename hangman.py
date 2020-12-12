@@ -69,31 +69,41 @@ def fill_in_the_blank(letter, blanks, word):
     for i in indices:
         blanks[i] = letter
     return blanks
-    print(blanks)
+    print(blanks) # For Testing
 
-def letter_in_word(letter, random_word, guess_count,round_word, word): # Function to check is Users letter is in word
+def letter_in_word(letter, random_word, guess_count,round_word, word, blanks): # Function to check is Users letter is in word
     print(letter) # For Testing
-          
+
+
+    
+
     if letter in word:
         print("There is a/an " + letter)
         fill_in_the_blank(letter,blanks, word)
         print(blanks)
         round_word = " ".join(blanks)
         print(round_word) # For testing
+
+        if blanks == word:
+            print("YOU GOT IT YOU WIN!!")
+            return
+        
         playgame(rand_word, round_word, guess_count)
         
     else:
         print("There is no " + letter)
-        playgame(rand_word, round_word, guess_count)           
+        playgame(rand_word, round_word, guess_count)   
 
-              
+    
+
+                  
 
 def playgame(rand_word, round_word, guess_count):
     guess_count += 1
     print(guess_count)
     while guess_count <= 15:
         menu()
-        print("Your word is " + round_word)
+        print("Your word is: " + round_word)
         print(random_word)
         print()
         try:
@@ -106,7 +116,7 @@ def playgame(rand_word, round_word, guess_count):
         if 1 <= choice <= 3:
             if choice == 1:
                 letter = input("Please guess a letter: ")
-                letter_in_word(letter, random_word, guess_count, round_word, word)
+                letter_in_word(letter, random_word, guess_count, round_word, word, blanks)
             elif choice == 2:
                 guess_word(random_word, guess_count, round_word)
             elif choice == 3:
