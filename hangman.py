@@ -1,6 +1,6 @@
 import random
 
-words = ["keyboard", "python", "owen", "blue", "tyrannosaurus"]
+words = ["keyboard", "python", "owen", "blue", "tyrannosaurus", "triceratops", "deinonychus", "compsognathus", "black", "nephi"]
 random_word = ""
 blanks = []
 word = []
@@ -20,7 +20,6 @@ def rand_word(self): # Funcion to count the number of letters in random word
 
     for i in random_word:
         count += 1
-    print(count)
     return count
     
 
@@ -69,10 +68,8 @@ def fill_in_the_blank(letter, blanks, word):
     for i in indices:
         blanks[i] = letter
     return blanks
-    print(blanks) # For Testing
 
 def letter_in_word(letter, random_word, guess_count,round_word, word, blanks): # Function to check is Users letter is in word
-    print(letter) # For Testing
 
 
     
@@ -80,12 +77,10 @@ def letter_in_word(letter, random_word, guess_count,round_word, word, blanks): #
     if letter in word:
         print("There is a/an " + letter)
         fill_in_the_blank(letter,blanks, word)
-        print(blanks)
         round_word = " ".join(blanks)
-        print(round_word) # For testing
 
         if blanks == word:
-            print("YOU GOT IT YOU WIN!!")
+            print("YOU GOT IT YOU WIN!! Your word was: " + random_word)
             return
         
         playgame(rand_word, round_word, guess_count)
@@ -100,11 +95,9 @@ def letter_in_word(letter, random_word, guess_count,round_word, word, blanks): #
 
 def playgame(rand_word, round_word, guess_count):
     guess_count += 1
-    print(guess_count)
     while guess_count <= 15:
         menu()
         print("Your word is: " + round_word)
-        print(random_word)
         print()
         try:
             choice = int(input("Select Your option:  "))
@@ -144,7 +137,7 @@ def main():
             word = []
             random_word = random.choice(words)
             main()
-            # playgame(random_word)
+            
         elif play_again == "n":
             print("Come back and play again")
             break
@@ -155,11 +148,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-# menu()
-# rand_word(rand_word)
-# word_blanks(word_blanks)
-# validate_input(letter)
-# letter_in_word(letter, random_word, guess_count)
-
-
-
